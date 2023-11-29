@@ -4,7 +4,6 @@ import ImageService from './ImageService';
 import ErrorAlert from './ErrorAlert';
 import SearchBar from './SearchBar';
 import Loading from './Loading';
-import Button from './Button';
 
 export default class App extends Component {
   state = {
@@ -84,8 +83,7 @@ export default class App extends Component {
     }
   };
   render() {
-    const { articles, error, isLoading, searchTerm, totalHits, perPage } =
-      this.state;
+    const { articles, error, isLoading, searchTerm } = this.state;
     if (isLoading) {
       return <Loading />;
     }
