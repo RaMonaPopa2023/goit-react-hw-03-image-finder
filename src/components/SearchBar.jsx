@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import debounce from 'lodash.debounce';
 import styles from './styles.module.css';
 
 export default class SearchBar extends Component {
@@ -12,15 +11,12 @@ export default class SearchBar extends Component {
 
   constructor(props) {
     super(props);
-    this.debouncedRetrieveArticles = debounce(props.retrieveArticles, 300);
   }
 
   handleChange = evt => {
     const searchTerm = evt.target.value;
 
     this.props.handleChange(searchTerm);
-
-    this.debouncedRetrieveArticles(searchTerm);
   };
 
   handleSubmit = evt => {
