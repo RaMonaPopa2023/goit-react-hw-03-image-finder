@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './styles.module.css';
 import Modal from './Modal';
 import Button from './Button';
+import debounce from 'lodash.debounce';
 
 class ImageGallery extends Component {
   constructor(props) {
@@ -10,7 +11,6 @@ class ImageGallery extends Component {
     this.state = {
       modalOpen: false,
       selectedImage: '',
-      visibleImages: 12,
     };
   }
 
@@ -24,14 +24,11 @@ class ImageGallery extends Component {
 
   handleLoadMore = () => {
     this.props.loadMore();
-    this.setState(prevState => ({
-      visibleImages: prevState.visibleImages + 12,
-    }));
   };
 
   render() {
-    const { articles } = this.props;
-    const { modalOpen, selectedImage, visibleImages } = this.state;
+    const { articles, visibleImages } = this.props;
+    const { modalOpen, selectedImage } = this.state;
 
     return (
       <div className={styles.ImageGallery}>

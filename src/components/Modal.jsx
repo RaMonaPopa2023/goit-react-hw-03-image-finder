@@ -6,7 +6,7 @@ export default class Modal extends Component {
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,
     handleClose: PropTypes.func.isRequired,
-    selectedImage: PropTypes.string.isRequired, // Change prop name to selectedImage
+    selectedImage: PropTypes.string.isRequired,
   };
 
   componentDidMount() {
@@ -30,7 +30,7 @@ export default class Modal extends Component {
   };
 
   render() {
-    const { isOpen, handleClose, selectedImage } = this.props; // Change prop name to selectedImage
+    const { isOpen, handleClose, selectedImage } = this.props;
 
     return (
       <div
