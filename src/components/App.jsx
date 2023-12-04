@@ -4,6 +4,7 @@ import ImageService from './ImageService';
 import ErrorAlert from './ErrorAlert';
 import SearchBar from './SearchBar';
 import Loading from './Loading';
+import { debounce } from 'lodash';
 
 export default class App extends Component {
   state = {
@@ -62,6 +63,11 @@ export default class App extends Component {
     const { searchTerm } = this.state;
 
     if (searchTerm !== prevState.searchTerm) {
+      this.setState({ searchTerm: searchTerm });
+      debounce(triggerSearch, 500);
+    }
+
+    async function triggerSearch() {
       this.setState({
         articles: [],
         error: '',
@@ -82,8 +88,10 @@ export default class App extends Component {
       await this.retrieveArticles(nextPage);
     }
   };
+
   render() {
-    const { articles, error, isLoading, searchTerm } = this.state;
+    const { visibleImages, articles, error, isLoading, searchTerm } =
+      this.state;
     if (isLoading) {
       return <Loading />;
     }
@@ -99,7 +107,11 @@ export default class App extends Component {
         />
         {error?.length > 0 && <ErrorAlert errors={error} />}
         {articles.length > 0 && (
-          <ImageGallery articles={articles} loadMore={this.loadMore} />
+          <ImageGallery
+            articles={articles}
+            loadMore={this.loadMore}
+            visibleImages={visibleImages}
+          />
         )}
         {isLoading && <Loading />}
       </div>

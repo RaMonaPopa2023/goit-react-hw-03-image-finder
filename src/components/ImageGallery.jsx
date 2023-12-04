@@ -10,7 +10,6 @@ class ImageGallery extends Component {
     this.state = {
       modalOpen: false,
       selectedImage: '',
-      visibleImages: 12,
     };
   }
 
@@ -24,19 +23,17 @@ class ImageGallery extends Component {
 
   handleLoadMore = () => {
     this.props.loadMore();
-    this.setState(prevState => ({
-      visibleImages: prevState.visibleImages + 12,
-    }));
   };
 
   render() {
-    const { articles } = this.props;
-    const { modalOpen, selectedImage, visibleImages } = this.state;
+    const { articles, visibleImages } = this.props;
+    const { modalOpen, selectedImage } = this.state;
 
     return (
       <div className={styles.ImageGallery}>
+        <code>{visibleImages}</code>
         {articles
-          .slice(0, visibleImages)
+          .slice(0, visibleImages) // Aici, o sa le stearga, in
           .map(({ id, webformatURL, largeImageURL }, index) => {
             const uniqueKey = `${id}_${index}`;
             return (
