@@ -44,7 +44,7 @@ class ImageGallery extends Component {
                 <img
                   className={styles.ImageGalleryItemImg}
                   src={webformatURL}
-                  alt={`Photo ${id}`}
+                  alt={`${id}`}
                 />
               </div>
             );
