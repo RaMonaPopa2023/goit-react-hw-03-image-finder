@@ -9,10 +9,6 @@ export default class SearchBar extends Component {
     retrieveArticles: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   handleChange = evt => {
     const searchTerm = evt.target.value;
 

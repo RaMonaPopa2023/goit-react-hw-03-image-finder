@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './styles.module.css';
 import Modal from './Modal';
 import Button from './Button';
-import debounce from 'lodash.debounce';
 
 class ImageGallery extends Component {
   constructor(props) {
@@ -45,7 +44,7 @@ class ImageGallery extends Component {
                 <img
                   className={styles.ImageGalleryItemImg}
                   src={webformatURL}
-                  alt={`Image ${id}`}
+                  alt={`Photo ${id}`}
                 />
               </div>
             );
